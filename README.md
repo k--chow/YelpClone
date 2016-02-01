@@ -32,7 +32,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![alt text](https://raw.githubusercontent.com/k--chow/YelpClon/master/Week3.gif "Final")
+![alt text](https://raw.githubusercontent.com/k--chow/YelpClone/master/Week3.gif "Final")
 
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
