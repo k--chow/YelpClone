@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Yelp-->
+        <!--Businesses View Controller-->
         <scene sceneID="hkH-qq-JLW">
             <objects>
                 <viewController id="mcR-Bm-dKC" customClass="BusinessesViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
@@ -111,6 +111,7 @@
                                             <outlet property="reviewsLabel" destination="Obs-UT-11z" id="vWj-Ss-ISK"/>
                                             <outlet property="thumbImageView" destination="t61-hK-OoX" id="d8o-jF-i7L"/>
                                             <outlet property="typeLabel" destination="jdB-7E-ITL" id="I48-Yn-Npr"/>
+                                            <segue destination="Rsf-Ft-5CB" kind="push" id="BYJ-ab-SlM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -124,32 +125,86 @@
                             <constraint firstAttribute="trailing" secondItem="tIv-J2-cM7" secondAttribute="trailing" id="osD-ci-Akm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Yelp" id="3UR-qt-8n7"/>
+                    <navigationItem key="navigationItem" id="Y0P-px-G0m">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="Z2m-SP-2T7"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="Kue-al-Olc" id="vXG-Gw-rgB"/>
                         <outlet property="tableView" destination="tIv-J2-cM7" id="f1d-Co-dbM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vr0-V4-G6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" id="Kue-al-Olc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
             </objects>
             <point key="canvasLocation" x="1154" y="367"/>
         </scene>
-        <!--Businesses View Controller-->
-        <scene sceneID="5L9-Uz-lNK">
+        <!--Detail View Controller-->
+        <scene sceneID="Zrv-HX-z3n">
             <objects>
-                <viewController id="2xI-yr-O5N" customClass="BusinessesViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Rsf-Ft-5CB" customClass="DetailViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hR0-74-jRp"/>
-                        <viewControllerLayoutGuide type="bottom" id="VBY-gq-v8E"/>
+                        <viewControllerLayoutGuide type="top" id="FJt-dZ-rck"/>
+                        <viewControllerLayoutGuide type="bottom" id="u6D-6W-EGt"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XhR-oz-92f">
+                    <view key="view" contentMode="scaleToFill" id="cmn-P2-LeV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FL6-2b-TyW">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IdQ-s8-W6s">
+                                        <rect key="frame" x="8" y="8" width="107" height="110"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WC-IG-v5i">
+                                        <rect key="frame" x="123" y="43" width="189" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3KB-NN-aYR">
+                                        <rect key="frame" x="8" y="126" width="304" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="R3B-fj-cMg">
+                                        <rect key="frame" x="8" y="173" width="304" height="323"/>
+                                    </mapView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQU-1k-50N">
+                                        <rect key="frame" x="123" y="79" width="189" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SAE-dW-nCC">
+                                        <rect key="frame" x="123" y="8" width="189" height="19"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="qUs-TS-Q5s"/>
+                    <connections>
+                        <outlet property="detailAddress" destination="3KB-NN-aYR" id="C4r-S6-9Wj"/>
+                        <outlet property="detailImageView" destination="IdQ-s8-W6s" id="Yib-24-fjY"/>
+                        <outlet property="detailPhone" destination="hQU-1k-50N" id="VwI-EO-KIl"/>
+                        <outlet property="detailType" destination="6WC-IG-v5i" id="0eG-ue-M0P"/>
+                        <outlet property="infoView" destination="FL6-2b-TyW" id="Lwt-Ta-OUP"/>
+                        <outlet property="mapView" destination="R3B-fj-cMg" id="tHA-dW-sgo"/>
+                        <outlet property="navTitle" destination="qUs-TS-Q5s" id="9bh-sC-6mj"/>
+                        <outlet property="ratingImageView" destination="SAE-dW-nCC" id="dhT-Ez-vgO"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gZj-pn-PUq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="338"/>
+            <point key="canvasLocation" x="1530" y="367"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="w4F-C2-y77">
@@ -159,6 +214,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8xs-vZ-RPA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.91764712329999998" green="0.12549020350000001" blue="0.1176470667" alpha="1" colorSpace="deviceRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

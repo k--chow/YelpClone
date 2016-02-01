@@ -1,11 +1,3 @@
-//
-//  Business.swift
-//  Yelp
-//
-//  Created by Timothy Lee on 4/23/15.
-//  Copyright (c) 2015 Timothy Lee. All rights reserved.
-//
-
 import UIKit
 
 class Business: NSObject {
@@ -16,10 +8,13 @@ class Business: NSObject {
     let distance: String?
     let ratingImageURL: NSURL?
     let reviewCount: NSNumber?
-    
+    let latitudeCoordinate: NSNumber?
+    let longitudeCoordinate: NSNumber?
+    let location: NSDictionary?
+    let phone: String?
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String
-        
+        phone = dictionary["display_phone"] as? String
         let imageURLString = dictionary["image_url"] as? String
         if imageURLString != nil {
             imageURL = NSURL(string: imageURLString!)!
@@ -29,6 +24,8 @@ class Business: NSObject {
         
         let location = dictionary["location"] as? NSDictionary
         var address = ""
+        var latitudeCoordinate: NSNumber!
+        var longitudeCoordinate: NSNumber!
         if location != nil {
             let addressArray = location!["address"] as? NSArray
             if addressArray != nil && addressArray!.count > 0 {
@@ -42,9 +39,23 @@ class Business: NSObject {
                 }
                 address += neighborhoods![0] as! String
             }
+            let latitudeCoordinateArray = location!["coordinate"]!["latitude"] as? NSArray
+            if latitudeCoordinateArray != nil
+            {
+                
+                latitudeCoordinate = latitudeCoordinateArray![0] as! NSNumber
+            }
+            let longitudeCoordinateArray = location!["coordinate.longitude"] as? NSArray
+            if longitudeCoordinateArray != nil
+            {
+                
+                longitudeCoordinate = longitudeCoordinateArray![0] as! NSNumber
+            }
         }
         self.address = address
-        
+        self.latitudeCoordinate = latitudeCoordinate
+        self.longitudeCoordinate = longitudeCoordinate
+        self.location = location
         let categoriesArray = dictionary["categories"] as? [[String]]
         if categoriesArray != nil {
             var categoryNames = [String]()
@@ -91,4 +102,5 @@ class Business: NSObject {
     class func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
         YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, completion: completion)
     }
+    
 }
